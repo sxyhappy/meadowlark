@@ -1,0 +1,16 @@
+{
+  "name": "meadowlark",
+  "version": "0.0.1",
+  "description": "site",
+  "main": "meadowlark.js",
+  "scripts": {
+    "start": "nodemon meadowlark.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "handlebars-helpers": "^0.10.0",
+    "hbs": "^4.0.1"
+  }
+}
