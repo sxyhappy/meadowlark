@@ -1,6 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 const helpers = require('handlebars-helpers');
+const fortune = require('./lib/fortune');
 hbs.registerHelper(helpers());
 
 const app = express();
@@ -15,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-  res.render('about', { fortune: ['A', 'B', 'C'] });
+  res.render('about', { fortune: fortune.getFortune() });
 });
 
 app.use((req, res) => {
