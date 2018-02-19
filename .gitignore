@@ -3,3 +3,6 @@ node_modules/
 
 # ide config
 .idea/
+
+# lock file
+yarn.lock

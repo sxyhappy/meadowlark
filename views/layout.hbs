@@ -5,9 +5,22 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Meadowlark Travel!</title>
+  {{#if showTests}}
+    <link rel="stylesheet" href="/vendor/mocha.css">
+  {{/if}}
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 </head>
 <body>
 <img src="/img/logo.bmp" alt="logo">
 {{{body}}}
+{{#if showTests}}
+  <div id="mocha"></div>
+  <script src="/vendor/mocha.js"></script>
+  <script src="/vendor/chai.js"></script>
+  <script>
+    mocha.ui('tdd');
+    var assert = chai.assert;
+  </script>
+{{/if}}
 </body>
 </html>
