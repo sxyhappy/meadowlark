@@ -11415,18 +11415,18 @@ function mkdirP (p, opts, f, made) {
     else if (!opts || typeof opts !== 'object') {
         opts = { mode: opts };
     }
-    
+
     var mode = opts.mode;
     var xfs = opts.fs || fs;
-    
+
     if (mode === undefined) {
         mode = _0777 & (~process.umask());
     }
     if (!made) made = null;
-    
+
     var cb = f || function () {};
     p = path.resolve(p);
-    
+
     xfs.mkdir(p, mode, function (er) {
         if (!er) {
             made = made || p;
@@ -11459,10 +11459,10 @@ mkdirP.sync = function sync (p, opts, made) {
     if (!opts || typeof opts !== 'object') {
         opts = { mode: opts };
     }
-    
+
     var mode = opts.mode;
     var xfs = opts.fs || fs;
-    
+
     if (mode === undefined) {
         mode = _0777 & (~process.umask());
     }
@@ -14422,7 +14422,7 @@ StringDecoder.prototype.end = utf8End;
 // Returns only complete characters in a Buffer
 StringDecoder.prototype.text = utf8Text;
 
-// Attempts to complete a partial non-UTF-8 character using bytes from a Buffer
+// Attempts to complete a partials non-UTF-8 character using bytes from a Buffer
 StringDecoder.prototype.fillLast = function (buf) {
   if (this.lastNeed <= buf.length) {
     buf.copy(this.lastChar, this.lastTotal - this.lastNeed, 0, this.lastNeed);
@@ -14508,7 +14508,7 @@ function utf8FillLast(buf) {
 }
 
 // Returns all complete UTF-8 characters in a Buffer. If the Buffer ended on a
-// partial character, the character's bytes are buffered until the required
+// partials character, the character's bytes are buffered until the required
 // number of bytes are available.
 function utf8Text(buf, i) {
   var total = utf8CheckIncomplete(this, buf, i);
@@ -14519,7 +14519,7 @@ function utf8Text(buf, i) {
   return buf.toString('utf8', i, end);
 }
 
-// For UTF-8, a replacement character for each buffered byte of a (partial)
+// For UTF-8, a replacement character for each buffered byte of a (partials)
 // character needs to be added to the output.
 function utf8End(buf) {
   var r = buf && buf.length ? this.write(buf) : '';
@@ -14553,7 +14553,7 @@ function utf16Text(buf, i) {
 }
 
 // For UTF-16LE we do not explicitly append special replacement characters if we
-// end on a partial character, we simply let v8 handle that.
+// end on a partials character, we simply let v8 handle that.
 function utf16End(buf) {
   var r = buf && buf.length ? this.write(buf) : '';
   if (this.lastNeed) {
