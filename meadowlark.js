@@ -4,12 +4,20 @@ const helpers = require('handlebars-helpers');
 const fortune = require('./lib/fortune');
 const data = require('./lib/data');
 const getWeatherData = require('./lib/getWeather');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const expressSession = require('express-session');
+
 hbs.registerHelper(helpers());
 hbs.registerPartials('./views/partials');
 
 const app = express();
 app.disable('x-powered-by');
 app.use(express.static(`${__dirname}\\public`));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(expressSession());
 
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'hbs');
@@ -32,6 +40,16 @@ app.get('/', (req, res) => {
 
 app.get('/about', (req, res) => {
   res.render('about', { fortune: fortune.getFortune() });
+});
+
+app.get('/newsletter', (req, res) => {
+  res.render('newsletter', { csrf: 'CSRF token goes here' })
+});
+
+app.post('/process', (req, res) => {
+  console.log(req.query);
+  console.log(req.body);
+  res.redirect(303, '/thank-you');
 });
 
 app.get('/tours/hood-river', (req, res) => {
